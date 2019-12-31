@@ -1,0 +1,120 @@
+
+        <div class="container-fluid bg-gradient-warning" style="padding-top: 80px;">
+          <div class="row">
+              <div class="col-xl-2">
+                <div class="row">
+                    <!-- <div class="card" style="width: 100%">
+                        <app-members></app-members>
+                    </div>   -->
+                    <div class="card bg-secondary card-profile shadow" style="width: 100%">
+                        <div class="card-header bg-white border-0">
+                            <div class="row align-items-center">
+                              <div class="col-12">
+                                <h3 class="mb-0">Team Members</h3>
+                              </div>
+                            </div>
+                      </div>
+
+                              <app-members></app-members>  
+
+                    </div>                
+                </div>
+                <hr>
+                <div class="row ">
+                    <div class="card bg-secondary card-profile shadow" style="width: 100%">
+                        <div class="card-header bg-white border-0">
+                            <div class="row align-items-center">
+                              <div class="col-12">
+                                <h3 class="mb-0">Todo List</h3>
+                              </div>
+                            </div>
+                      </div>
+                      
+                        <div class="text-center">
+                          <h3>
+                              <app-todo></app-todo>  
+                          </h3>
+                        </div>
+                      
+                  </div>
+                </div>  
+              </div>
+              <div class="col-xl-7">
+                  <div class="card bg-secondary card-profile shadow" style="width: 100%">
+                      <div class="card-header bg-white border-0">
+                          <div class="row align-items-center text-center">
+                            <div class="col-12">
+                              <h1 class="mb-0">
+                                  <a data-toggle="modal" data-target="#modal-projectInformation">
+                                      <b>{{ projectInformation.name }}</b>
+                                    </a>
+                              </h1>
+                            </div>
+                          </div>
+                    </div>
+                 
+                      <div class="text-center">
+                        <h3>
+                            <app-paint></app-paint>  
+                        </h3>
+                      </div>
+                   
+                </div>
+              </div>
+              <div class="col-xl-3">
+                <div class="card bg-secondary card-profile shadow" style="width: 100%">
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                          <div class="col-12">
+                            <h3 class="mb-0">Chat Board</h3>
+                          </div>
+                        </div>
+                  </div>
+                  
+                    <div class="text-center">
+                      
+                          <app-chat></app-chat>  
+                     
+                    </div>
+                
+              </div>
+              </div>
+        </div>
+      </div> 
+
+ 
+<div class="row" *ngIf = "projectInformation">
+    <div class="col-md-4">
+        <div class="modal fade" id="modal-projectInformation" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+      <div class="modal-dialog modal-warning modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+              
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title-default">Project Detail</h5>
+            </div>
+            
+            <div class="modal-body">      
+
+              <h2 class="text-center"> {{projectInformation.name}}</h2>
+              <br>
+              <p>
+                  {{ projectInformation.name }} is a {{ projectInformation.description }}.
+              </p>
+              <p>
+                  {{ projectInformation.name }} is been developing in {{ projectInformation.language }} language and on 
+                  {{ projectInformation.platform }} platform.
+              </p>
+              <p>
+                  Currently in {{ projectInformation.name }} there are {{ memberCount }} member
+              </p>
+
+            </div>
+              
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button> 
+            </div>              
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

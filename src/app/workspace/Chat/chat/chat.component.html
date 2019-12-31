@@ -1,0 +1,23 @@
+
+     
+    <!--main chat section-->
+    <div class="col-12 col-sm-12 conversation">
+          <!--messages section-->
+          <div class="row message" id="conversation">
+                  <!--sent message component-->
+                      <div class="row" style="overflow: scroll;">
+                          <app-sent-message></app-sent-message>
+                      </div>
+          </div>
+
+          <!--reply section-->
+          <div class="row reply">
+              <div class="col-9 col-sm-9 reply-main">
+                  <textarea class="form-control" rows="1" id="comment" placeholder="write a message..." [(ngModel)]="message" (keydown)="handleSubmit($event)"></textarea>
+              </div>
+              <div class="col-3 col-sm-3 reply-send">
+                  <button type="button" class="btn btn-info btn-send" (click)="send()">Send</button>
+              </div>
+          </div>
+    </div>
+

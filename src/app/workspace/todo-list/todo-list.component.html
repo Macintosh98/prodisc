@@ -1,0 +1,29 @@
+
+<table class="table table-responsive">
+        <thead>  
+          <th>Task</th>
+          <th></th>
+        </thead>
+        <tbody>
+                <tr *ngFor="let todo of todoArray">
+
+                        <td>
+                                {{todo.Task}} 
+                        </td>
+                        
+                        <td>
+                                <select (change)="onChange($event , todo.$key )" [(ngModel)] = 'todo.Status'>
+                                        <option value="Added"  >Added</option>
+                                        <option value="Working"  >Working</option>
+                                        <option  value="Completed" >Completed</option>
+                                </select>
+                        </td>
+
+                </tr>
+        </tbody>
+</table>
+   
+<div class="alert alert-danger" *ngIf="showDeletedMessage">
+        Task Removed!!!
+</div>
+      

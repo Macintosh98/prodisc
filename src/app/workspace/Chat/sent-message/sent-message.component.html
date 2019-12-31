@@ -1,0 +1,15 @@
+<div *ngFor="let message of feed | async" class="row message-body">
+    <div class="col-sm-12 message-main-sender">
+      <div class="receiver-time">
+        {{message.timeSent}}
+      </div>
+      <div class="sender">
+        <div class="row-sm-2 message-text">
+          {{message.userName}}
+        </div>    
+        <div class="row-sm-4 message-text">
+          {{message.message}}
+        </div>
+      </div>
+    </div>
+</div>

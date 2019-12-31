@@ -1,0 +1,17 @@
+
+<div *ngIf = "myprojects.length > 0">
+    <table class="table align-items-center">
+            <tr *ngFor="let project of myprojects; let i = index"> 
+                <td scope="row" class="name">
+                    <div class="media align-items-center">
+                        <div class="media-body">
+                            <span class="mb-0 text-sm"> {{project.name}} </span>
+                        </div>
+                    </div>
+                </td>
+                <td class="budget">
+                    <button type="button" class="btn btn-sm btn-primary" (click)="Go(project.id)" >Go</button>
+                </td>
+            </tr>
+    </table>
+</div>

@@ -1,0 +1,163 @@
+
+
+
+<section class="projects-section bg-default">    
+        <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+          <div class="container px-4">
+            <a class="navbar-brand" href="../index.html">
+              <img src="../assets/img/brand/white.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse-main">
+              <!-- Collapse header -->
+              <div class="navbar-collapse-header d-md-none">
+                <div class="row">
+                  <div class="col-6 collapse-brand">
+                    <a href="../index.html">
+                      <img src="../assets/img/brand/blue.png">
+                    </a>
+                  </div>
+                  <div class="col-6 collapse-close">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                      <span></span>
+                      <span></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Navbar items -->
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link nav-link-icon" href="../index.html">
+                    <i class="ni ni-planet"></i>
+                    <span class="nav-link-inner--text">Dashboard</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-link-icon" href="../examples/register.html">
+                    <i class="ni ni-circle-08"></i>
+                    <span class="nav-link-inner--text">Register</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-link-icon" href="../examples/login.html">
+                    <i class="ni ni-key-25"></i>
+                    <span class="nav-link-inner--text">Login</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-link-icon" href="../examples/profile.html">
+                    <i class="ni ni-single-02"></i>
+                    <span class="nav-link-inner--text">Profile</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- Header -->
+        <div class="header bg-gradient-primary py-7">
+          <div class="container">
+            <div class="header-body text-center mb-6">
+              <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-6">
+                  <h1 class="text-white">Create New Project</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+          </div>
+        </div>
+        <!-- Page content -->
+        <div class="container mt--8 pb-5">
+          <!-- Table -->
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+              <div class="card bg-secondary shadow border-0">
+
+                <div class="card-body px-lg-5 py-lg-4">
+
+                  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+                    <input type="hidden" formControlName="$key">
+
+                    <div class="form-group">
+                      <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-tag"></i></span>
+                        </div>
+                        <input id="name" type="text" formControlName="name" class="form-control" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">Project Name is required</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-single-copy-04"></i></span>
+                            </div>
+                            <input id="name" type="text" formControlName="description" class="form-control" placeholder="Description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                <div *ngIf="f.description.errors.required">Project description is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-ruler-pencil"></i></span>
+                        </div>
+                        <input id="name" type="text" formControlName="language" class="form-control" placeholder="Language" [ngClass]="{ 'is-invalid': submitted && f.language.errors }">
+                        <div *ngIf="submitted && f.language.errors" class="invalid-feedback">
+                            <div *ngIf="f.language.errors.required">Project language is required</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-laptop"></i></span>
+                        </div>
+                        <input id="name" type="text" formControlName="platform" class="form-control" placeholder="Platform" [ngClass]="{ 'is-invalid': submitted && f.platform.errors }">
+                        <div *ngIf="submitted && f.platform.errors" class="invalid-feedback">
+                            <div *ngIf="f.platform.errors.required">Project platform is required</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" value="Create Project" class="btn btn-primary mt-4">Create Project</button>
+                        <button type="reset" value="Cancel" class="btn btn-primary mt-4" (click)="reset()">Cancel</button>
+                    </div>
+
+                    <!-- <div class="text-center" *ngIf="!showSuccessMessage">
+                        <div class="alert alert-danger">
+                                project not created
+                        </div>
+                    </div> -->
+                    <div class="text-center" *ngIf="showSuccessMessage">
+                        <div class="alert alert-info">
+                                project created
+                        </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>        
+    </section>
+

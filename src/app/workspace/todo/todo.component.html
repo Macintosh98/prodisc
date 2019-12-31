@@ -1,0 +1,24 @@
+
+<!-- Form which takes the task from user -->
+
+    <form [formGroup]="this.todoService.form" (ngSubmit)="onSubmit()">
+      
+      <input type="hidden" formControlName="$key">
+        
+        <div class="form-group">
+          <input formControlName="Task" class="form-control" type="text" placeholder="Task">
+        </div>
+        
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary btn-sm" value="Add Task">
+        </div>
+    
+    </form>
+    
+    <div class="alert alert-info"  *ngIf="showSuccessMessage">
+      Task Added!!!
+    </div>
+
+    <!-- Display all task with there status that are currently in project's todo list -->
+    
+    <app-todo-list></app-todo-list>

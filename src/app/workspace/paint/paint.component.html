@@ -1,0 +1,130 @@
+<br>
+<!-- Tool Box of sketch board -->
+<div class="row">
+        <div class="col-md-6">
+                <li class="nav-item dropdown">
+                        <a class="nav-link pr-0"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="media align-items-center">
+                                <div class="media-body ml-2 d-none d-lg-block">
+                                    <span class="mb-0 text-sm  font-weight-bold"> Saved Images </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-left">
+                            <div *ngIf = "savedImages.length > 0; else elseContent">
+                                <div *ngFor = "let image of savedImages" class="container">
+                                    <a class="dropdown-item" (click) = "Upload(image.image)">
+                                        {{ image.image_name }}
+                                    </a>
+                                    <span>
+                                        <button type="button" class="btn btn-primary btn-sm" (click)="DeleteImage(image.$key)">x</button>                                        
+                                    </span>
+                                </div>
+                            </div>
+                            <ng-template #elseContent>
+                                    <a  class="dropdown-item">
+                                        <span> No Images Saved </span>
+                                    </a>    
+                            </ng-template>
+                        </div>
+                </li>
+
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">Save</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="Delete()">Delete</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="Clear()">Clear</button>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+                <div class="btn-group">
+                        <div>
+                            <button (click) = "SelectColor('black')" style="height:20px; width:20px;background-color: black;"></button>
+                            <button (click) = "SelectColor('red')" style="height:20px; width:20px; background-color: red;"></button>
+                        </div>
+                        &nbsp;
+                        <div>
+                            <button (click) = "SelectColor('blue')" style="height:20px; width:20px; background-color: blue;"></button>
+                            <button (click) = "SelectColor('pink')" style="height:20px; width:20px;background-color: pink;"></button>
+                        </div>
+                        &nbsp;
+                        <div>    
+                            <button (click) = "SelectColor('orange')" style="height:20px; width:20px;background-color: orange;"></button>
+                            <button (click) = "SelectColor('brown')" style="height:20px; width:20px;background-color: brown;"></button>
+                        </div>
+                        &nbsp;
+                        <div>    
+                            <button (click) = "SelectColor('green')" style="height:20px; width:20px;background-color: green;"></button>
+                            <button (click) = "SelectColor('grey')" style="height:20px; width:20px;background-color: grey;"></button>
+                        </div>
+                        &nbsp;
+                        <div>    
+                            <button (click) = "SelectColor('skyblue')" style="height:20px; width:20px;background-color: skyblue;"></button>
+                            <button (click) = "SelectColor('yellow')" style="height:20px; width:20px;background-color: yellow;"></button>
+                        </div>
+                    </div> 
+        </div>
+        
+        <div class="col-md-2">
+                <div class="btn-group">
+                        <div>
+                            <button (click)="SelectShape('rectangle')" style="height:20px; width:20px; background-image: url('../../assets/img/r.png');background-color:white;" data-toggle="tooltip" data-placement="top" title="Rectangle"></button>
+                            <button (click)="SelectShape('circle')" style="height:20px; width:20px; background-image: url('../../assets/img/c.png');background-color:white;" data-toggle="tooltip" data-placement="top" title="Circle"></button>
+                        </div>
+                        &nbsp;
+                        <div>
+                            <button (click)="SelectShape('freehand')" style="height:20px; width:20px;background-image: url('../../assets/img/p.png');background-color:white;" data-toggle="tooltip" data-placement="top" title="Pencil"></button>
+                            <button (click)="SelectShape('eraser')" style="height:20px; width:20px;background-image: url('../../assets/img/e.png');background-color:white;" data-toggle="tooltip" data-placement="top" title="Eraser"></button>
+                        </div>
+                        &nbsp;
+                        <div>    
+                            <button (click)="SelectShape('line')" style="height:20px; width:20px;background-image: url('../../assets/img/l.png');background-color:white;" data-toggle="tooltip" data-placement="top" title="Line"></button>
+                            <button (click)="SelectShape('point')" style="height:20px; width:20px;background-image: url('../../assets/img/dot1.png');background-color:white;" data-toggle="tooltip" data-placement="top" title="Point"></button>
+                        </div>
+                        <div>    
+                            <button (click)="SelectShape('semicircleUp')" style="height:20px; width:20px;background-image: url('../../assets/img/su.png');background-color:white;" data-toggle="tooltip" data-placement="top" title="Semi-Circle-Up"></button>
+                            <button (click)="SelectShape('semicircleDown')" style="height:20px; width:20px;background-image: url('../../assets/img/sd.png');background-color:white;" data-toggle="tooltip" data-placement="top" title="Semi-Circle-Down"></button>
+                        </div>
+                </div> 
+        </div>     
+</div>
+
+    <div class="row">
+            <div class="col-md-12">
+                    <canvas #mount id="canvas"></canvas>
+            </div>
+
+    </div>
+
+
+<!-- Modal contains a form which takes name of image that is to be saved -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Save Image</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="this.form" (ngSubmit)="Download()">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <input formControlName="image_name" class="form-control" type="text" placeholder="Name Of Image">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Save">
+                        </div>
+                    </div>
+                </div>              
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+

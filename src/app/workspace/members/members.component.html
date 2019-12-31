@@ -1,0 +1,154 @@
+<!-- Model for Search Members for required skills -->
+
+<div class="row">
+    <div class="col-md-4">
+            <div class="modal fade" id="modal-searchMembers" tabindex="-1" role="dialog" aria-labelledby="modal-searchMembers" aria-hidden="true">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+              <div class="modal-content">
+                  
+                  <div class="modal-header">
+                      <h6 class="modal-title" id="modal-title-default">Prodisx Member Search</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                      </button>
+                  </div>
+                  
+                  <div class="modal-body">
+                        <div class="table-responsive">
+                                <div>
+                                <table class="table align-items-center">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">
+                                                <form role="form" #userRegForm="ngForm" (ngSubmit)="SearchMembers(userRegForm)">                        
+                                                    <div class="form-group">
+                                                            <div class="input-group input-group-alternative">
+                                                                <select ngModel #skills="ngModel" name="skills" multiple (change)="onChange($event)">
+                                                                    <option value="C">C</option>
+                                                                    <option value="C++"  >C++</option>
+                                                                    <option  value="Java" >Java</option>
+                                                                    <option  value="Python" >Python</option>
+                                                                    <option  value="Data structure" >Data structure</option>
+                                                                    <option  value="Php" >Php</option>
+                                                                    <option  value="C#" >C#</option>
+                                                                    <option  value="Angular">Angular</option>
+                                                                    <option  value="Swift" >Swift</option>
+                                                                    <option  value="Andriod" >Andriod</option> 
+                                                                </select>                    
+                                                            </div>                                        
+                                                    </div>
+
+                                                    <div class="text-center">
+                                                        <button type="submit" class="btn btn-primary mt-4">Go</button>
+                                                    </div>
+                                                </form>                                       
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list" *ngIf="selectedMembers.length > 0; else elseContent">
+                                        
+                                        <tr *ngFor="let member of selectedMembers">
+                                            <td scope="row" class="name">
+                                                <div class="media align-items-center">
+                                                    <div class="media-body">
+                                                        <span class="mb-0 text-sm">{{ member.firstname }} {{member.lastname}}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="budget">
+                                                <button type="button" class="btn btn-primary" (click)="sendRequest(member.$key)">Send Request</button>
+                                            </td>
+
+                                        </tr>                                        
+                                    </tbody>
+                                    <ng-template #elseContent>
+                                            <tr>
+                                                <td>
+                                                    <div class="media align-items-center">
+                                                        <div class="media-body">
+                                                            <span class="mb-0 text-sm">No Member Found</span>
+                                                        </div>
+                                                    </div>                                                                
+                                                </td>
+                                            </tr>
+                                    </ng-template>
+                                </table>
+                            </div>                           
+                            </div>                   
+                  </div>
+                  
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button> 
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+<!-- Team Member's List -->
+
+<div  style="overflow: auto;overflow-x: hidden;">
+        <table class="table table-responsive"> 
+
+                <tr *ngFor="let member of memberList">
+                    <td >
+                        <span class="mb-0 text-sm">{{ member.name }}</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-memberInformation" (click)="Details(member.id)">View</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-block btn-primary btn-sm" data-toggle="modal" data-target="#modal-searchMembers" (click)="Reset()">Add Members</button>
+                    </td>
+                </tr>                
+        </table>
+</div>
+
+<!-- Model -> Shows Information of an individual team member -->
+
+<div class="row" *ngIf = "memberInfo">
+    <div class="col-md-4">
+        <div class="modal fade" id="modal-memberInformation" tabindex="-1" role="dialog" aria-labelledby="modal-memberInformation" aria-hidden="true">
+      <div class="modal-dialog modal-success modal- modal-dialog-centered modal-" role="document">
+          <div class="modal-content">
+              
+              <div class="modal-header">
+                  <h5 class="modal-title" id="modal-title-default">Member Details</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+              
+              <div class="modal-body">
+                  
+                <h2 class="text-center"> {{ memberInfo.firstname }} {{ memberInfo.lastname }}</h2>
+                <br>
+                
+                <p> 
+                    <b>Email</b> <br>
+                    {{ memberInfo.email }}
+                </p>
+                <p> 
+                    <b>Bio</b> <br>
+                    {{ memberInfo.bio }}
+                </p>
+                <p>
+                    <b>Skills</b> <br>
+                    {{ memberInfo.skills }}
+                </p>
+
+              </div>
+              
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button> 
+              </div>
+              
+          </div>
+      </div>
+  </div>
+</div>
+</div>
